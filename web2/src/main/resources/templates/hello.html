@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<table cellpadding="0" cellspacing="0">
+    <thead>
+    <th width="10%">序号</th>
+    <th width="20%">视频id</th>
+    <th width="20%">视频源地址</th>
+    <th width="10%">视频评分</th>
+    <th width="20%">视频关键字</th>
+    <th width="10%">视频下载状态</th>
+    <th width="10%">b站上传状态</th>
+    </thead>
+    <tbody>
+    <tr th:each="entries,stat:${list}" th:style="'background-color:'+@{${stat.odd}?'#F2F2F2'}">
+        <td th:text="${stat.count}"></td>
+        <td th:text="${entries['id']}"></td>
+        <td th:text="${entries['src']}"></td>
+        <td th:text="${entries['avgRating']}"></td>
+        <td th:text="${entries['keywords']}"></td>
+        <td th:text="${entries['status']}"></td>
+        <td th:text="${entries['bilibili']}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

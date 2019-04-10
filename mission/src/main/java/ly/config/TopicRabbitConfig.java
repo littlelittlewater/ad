@@ -1,6 +1,5 @@
 package ly.config;
 
-
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -12,28 +11,49 @@ import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
 @Configuration
 public class TopicRabbitConfig {
-    public final static String message = "basic.add5";
+    public final static String MISSION_ALL = "mission_all";
 
-    //创建队列A
+    public final static String PUBLISH_ERROR= "publish_error";
+    public final static String PUBLISH_SUCCESS = "publish_success";
 
-    @Bean
-    public Queue messageB() {
-        return new Queue(message);
-    }
-    //创建交换器
+    public final static String MISSION_PUBLISH_EXCHANGE = "missionExchange";
+
     @Bean
     TopicExchange exchange() {
-        return new TopicExchange("topicExchange");
+        return new TopicExchange(MISSION_PUBLISH_EXCHANGE);
     }
-    //将队列A绑定至topic.messageA的路由键中
+
     @Bean
-    Binding bindingExchangeMessage(Queue messageA, TopicExchange exchange) {
-        return BindingBuilder.bind(messageA).to(exchange).with(message);
+    public Queue queuePublishError() {
+        return new Queue(PUBLISH_ERROR);
     }
-    //将队列A绑定至topic.#的路由键中，*表示一个词,#表示零个或多个词
+
+    @Bean
+    Binding bindingExchangeMessageA(Queue queuePublishError, TopicExchange exchange) {
+        return BindingBuilder.bind(queuePublishError).to(exchange).with("*.error");
+    }
+
+    @Bean
+    public Queue queuePublishSuccess() {
+        return new Queue(PUBLISH_SUCCESS);
+    }
+
+    @Bean
+    Binding bindingExchangeMessageB(Queue queuePublishSuccess, TopicExchange exchange) {
+        return BindingBuilder.bind(queuePublishSuccess).to(exchange).with("*.success");
+    }
+
+    @Bean
+    public Queue queueMissionAll() {
+        return new Queue(MISSION_ALL);
+    }
+
+    @Bean
+    Binding bindingExchangeMessageC(Queue queueMissionAll, TopicExchange exchange) {
+        return BindingBuilder.bind(queueMissionAll).to(exchange).with("#");
+    }
 
     @Bean
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {

@@ -3,9 +3,9 @@ package ly.schedule;
 
 import ly.config.TopicRabbitConfig;
 import ly.domain.Mission;
-import ly.message.FinishMessage;
 import ly.message.Message;
 import ly.message.MissionMessageQueue;
+import ly.message.PublishMessage;
 import ly.repository.MissionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +22,10 @@ import java.util.List;
  */
 @Component
 public class PublishCron {
+
+  public static final String BASIC_PUBLISH = "basic.publish";
+
+
   @Autowired
   MissionRepository missionRepository;
 
@@ -41,20 +45,13 @@ public class PublishCron {
     needToDo.stream()
         .filter(mission -> mission.canPublish())
         .forEach(mission -> {
-              Message message = Message.newPublishMessage(mission);
+              Message message = new PublishMessage(mission.getId(),mission.getPublishPerTrigger());
               missionMessageQueue.accept(message);
-              this.rabbitTemplate.convertAndSend("topicExchange",
-                  TopicRabbitConfig.message, message);
+              this.rabbitTemplate.convertAndSend(TopicRabbitConfig.MISSION_PUBLISH_EXCHANGE,
+                  BASIC_PUBLISH, message);
             }
         );
   }
 
-  /**
-   * 模拟消费请求
-   **/
-  @Scheduled(cron = "* * 3 * * *")
-  public void cosume() {
-    logger.info("publishCron is starting");
-    missionMessageQueue.accept(new FinishMessage(1L, 1L));
-  }
+
 }

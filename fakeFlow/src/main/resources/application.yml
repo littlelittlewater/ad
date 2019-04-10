@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+  hateoas:
+    use-hal-as-default-json-media-type:false
+server:
+  port: 0
+  # The context path has to be explicit if you are running both the client and the auth server on localhost, otherwise the cookie paths clash and the two apps cannot agree on a session identifier.
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:8001/auth/user
+    client:
+      client-id: timeyang
+      access-token-uri: http://localhost:80
+  ignored: /v1/**
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+logging:
+  path: ./log/fakeFlow

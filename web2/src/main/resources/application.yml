@@ -1,0 +1,49 @@
+spring:
+  profiles: dev
+  application:
+    name: web-service
+spring.mvc.static-path-pattern: /**
+#  ignored: /assets/**
+zuul:
+  ignored-services: '*'
+  routes:
+    edge-service:
+      path: /api/**
+      url: http://localhost:8002
+    auth-service:
+      path: /user/**
+      url: http://localhost:8001/auth/user
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 120000
+security:
+  # 安全起见，应该启用csrf保护。因为前端使用的是angularjs，所有需要在WebSecurityConfigurer.configure方法(即OnlineStoreApplication.configure方法)里面配置CookieCsrfTokenRepository
+  #  enable-csrf: false
+  oauth2:
+    resource:
+      # to complete the authentication it needs to know where the user info endpoint is in user-service
+      userInfoUri: http://127.0.0.1:8001/auth/user
+      prefer-token-info: false
+    # the filter also needs to know about the client registration with user-service
+    client:
+      clientId: timeyang
+      clientSecret: timeyangsecret
+      accessTokenUri: http://127.0.0.1:8001/auth/oauth/token
+      userAuthorizationUri: http://127.0.0.1:8001/auth/oauth/authorize
+  ignored: /v1/**
+# 忽略的资源在WebSecurityConfigurer.configure方法里面配置，即OnlineStoreApplication.configure方法。因为在这里配置不够灵活
+#  ignored: /assets/**
+eureka:
+  instance:
+    non-secure-port: ${server.port}
+    prefer-ip-address: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+# 提高延时设置 elevate timeout settings, 避免因为延时造成失败
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 120000
+  ReadTimeout: 120000

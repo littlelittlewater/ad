@@ -1,0 +1,110 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<link rel="stylesheet" data-th-href="@{css/autocomplete/autocomplete.css}">
+
+
+<body>
+<p class="card-text">
+    <small class="text-muted">
+        当前等待审核数目:<span id="DownloadNumber"></span>
+    </small>
+    <small class="text-muted">
+        当前上传数目:<span id="UploadNumber"></span>
+    </small>
+</p>
+<div class="card mb-3" style="width : 33%;float:left">
+    <div class="card-body">
+        <p class="card-text"><span id='title'></span>
+        <form role="form" class="updateForm form-horizontal">
+            <input name="id" hidden="hidden"/>
+            <input type="text" name="title"
+                   class="form-control">
+
+            <input name="status" id="status" hidden="hidden"/>
+            <div class="form-group " id="quickTitle">
+                快速选择(会自动递增增加期数):</br>
+            </div>
+            <div class="form-group ">
+                <label for="updateTitle">上传标题</label>
+                <input type="text" th:value="${uploadtitle}" name="updateTitle"
+                       class="form-control uploadTitle">
+            </div>
+            <button type="button" class="btn btn-success" onclick="update(0,5)">
+                提交
+            </button>
+            <button type="button" class="btn btn-danger" onclick="update(0,6)">
+                取消
+            </button>
+        </form>
+
+    </div>
+    <video class="card-img-top video" controls="controls"
+           alt="Card image cap"/>
+</div>
+
+<div class="card mb-3" style="width : 33%;float:left">
+    <div class="card-body">
+        <p class="card-text"><span id='title'></span>
+        <form role="form" class="updateForm form-horizontal">
+            <input name="id" hidden="hidden"/>
+            <input type="text" name="title"
+                   class="form-control">
+
+            <input name="status" id="status" hidden="hidden"/>
+            <div class="form-group " id="quickTitle">
+                快速选择(会自动递增增加期数):</br>
+            </div>
+            <div class="form-group ">
+                <label for="updateTitle">上传s标题</label>
+                <input type="text" th:value="${uploadtitle}" name="updateTitle"
+                       class="form-control uploadTitle">
+            </div>
+            <button type="button" class="btn btn-success" onclick="update(1,5)">
+                提交
+            </button>
+            <button type="button" class="btn btn-danger" onclick="update(1,6)">
+                取消
+            </button>
+        </form>
+
+    </div>
+    <video class="card-img-top video" controls="controls"
+           alt="Card image cap"/>
+</div>
+
+<div class="card mb-3" style="width : 33%;float:left">
+    <div class="card-body">
+        <p class="card-text"><span id='title'></span>
+        <form role="form" class="updateForm form-horizontal">
+            <input name="id" hidden="hidden"/>
+            <input type="text" name="title"
+                   class="form-control">
+
+            <input name="status" id="status" hidden="hidden"/>
+            <div class="form-group " id="quickTitle">
+                快速选择(会自动递增增加期数):</br>
+            </div>
+            <div class="form-group ">
+                <label for="updateTitle">上传s标题</label>
+                <input type="text" th:value="${uploadtitle}" name="updateTitle"
+                       class="form-control uploadTitle">
+            </div>
+            <button type="button" class="btn btn-success" onclick="update(2,5)">
+                提交
+            </button>
+            <button type="button" class="btn btn-danger" onclick="update(2,6)">
+                取消
+            </button>
+        </form>
+
+    </div>
+    <video class="card-img-top video" controls="controls"
+           alt="Card image cap"/>
+</div>
+
+</body>
+
+
+</html>
+<script data-th-src="@{js/app/video/video.js}"></script>
+<script data-th-src="@{js/autocomplete/autocomplete.js}"></script>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="discover" />
+        <module name="edge" />
+        <module name="fakeFlow" />
+        <module name="mission" />
+        <module name="redis" />
+        <module name="user-service" />
+        <module name="web2" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ad" target="8" />
+      <module name="discover" target="8" />
+      <module name="edge" target="8" />
+      <module name="fakeFlow" target="8" />
+      <module name="mission" target="8" />
+      <module name="redis" target="8" />
+      <module name="user-service" target="8" />
+      <module name="web2" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

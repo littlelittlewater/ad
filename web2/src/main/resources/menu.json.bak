@@ -1,0 +1,140 @@
+{
+  "msg": {
+    "id": "0",
+    "text": "根节点",
+    "state": {
+      "opened": true
+    },
+    "checked": true,
+    "children": [
+      {
+        "id": "1",
+        "icon": "zmdi zmdi-settings",
+        "text": "系统管理",
+        "checked": false,
+        "children": [
+          {
+            "id": "3",
+            "icon": "",
+            "url": "mession",
+            "text": "任务情况",
+            "checked": false,
+            "children": [],
+            "parentId": "1",
+            "hasParent": true,
+            "hasChildren": false
+          }
+        ],
+        "parentId": "0",
+        "hasParent": false,
+        "hasChildren": true
+      },
+      {
+        "id": "115",
+        "icon": "zmdi zmdi-code-setting",
+        "url": "",
+        "text": "账号管理",
+        "checked": false,
+        "children": [
+          {
+            "id": "116",
+            "icon": "",
+            "url": "account/account",
+            "text": "详细登录情况",
+            "checked": false,
+            "children": [],
+            "parentId": "115",
+            "hasParent": true,
+            "hasChildren": false
+          },
+          {
+            "id": "131",
+            "icon": "",
+            "url": "account/accountInfo",
+            "text": "账号总览",
+            "checked": false,
+            "children": [],
+            "parentId": "115",
+            "hasParent": true,
+            "hasChildren": false
+          }
+        ],
+        "parentId": "0",
+        "hasParent": false,
+        "hasChildren": true
+      },
+      {
+        "id": "122",
+        "icon": "",
+        "url": "",
+        "text": "视频管理",
+        "checked": false,
+        "children": [
+          {
+            "id": "123",
+            "icon": "",
+            "url": "video/upload",
+            "text": "视频审核",
+            "checked": false,
+            "children": [],
+            "parentId": "122",
+            "hasParent": true,
+            "hasChildren": false
+          },
+          {
+            "id": "126",
+            "icon": "",
+            "url": "upload?type=bilibili",
+            "text": "审核管理",
+            "checked": false,
+            "children": [],
+            "parentId": "122",
+            "hasParent": true,
+            "hasChildren": false
+          },
+          {
+            "id": "132",
+            "icon": "zmdi zmdi-assignment-alert",
+            "url": "spiderUrl/quickTitle",
+            "text": "快速标题",
+            "checked": false,
+            "children": [],
+            "parentId": "122",
+            "hasParent": true,
+            "hasChildren": false
+          }
+        ],
+        "parentId": "0",
+        "hasParent": false,
+        "hasChildren": true
+      },
+      {
+        "id": "124",
+        "icon": "",
+        "url": "",
+        "text": "爬虫",
+        "checked": false,
+        "children": [
+          {
+            "id": "125",
+            "icon": "",
+            "url": "spiderUrl/spiderUrl",
+            "text": "爬虫url管理",
+            "checked": false,
+            "children": [],
+            "parentId": "124",
+            "hasParent": true,
+            "hasChildren": false
+          }
+        ],
+        "parentId": "0",
+        "hasParent": false,
+        "hasChildren": true
+      }
+    ],
+    "parentId": "",
+    "hasParent": false,
+    "hasChildren": true
+  },
+  "code": 0
+}

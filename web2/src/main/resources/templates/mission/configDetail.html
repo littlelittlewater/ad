@@ -1,0 +1,38 @@
+<script>
+    function upload() {
+        $MB.confirm({
+            text: "确认要这样更新?",
+            confirmButtonText: "确定更新?"
+        }, function () {
+            $.post(ctx + 'config/update', $("#config-form").serialize(), function (r) {
+                if (r.code === 0) {
+                    $MB.n_success(r.msg);
+                    refresh();
+                } else {
+                    $MB.n_danger(r.msg);
+                }
+            });
+        })
+    }
+</script>
+<div
+        xmlns:th="http://www.w3.org/1999/xhtml">
+    <form id="config-form" action="/config/update">
+        <div th:each="config:${configs}" class="row">
+            <div class="col-sm-11">
+                <div class="input-group">
+                                <span class="input-group-addon">
+					                <span th:text="${config.keyy}">Hello World</span>
+					            </span>
+                    <div class="form-group">
+                        <input type="text" th:name="${config.keyy}" class="form-control" th:value="${config.valuee}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-save" onclick="upload()">保存</button>
+    </div>
+</div>
+

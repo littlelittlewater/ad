@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: web-service
+server:
+  port: 80
+---
+spring:
+  profiles: default
+  cloud:
+    config:
+      uri: http://localhost:8888
+spring.profiles.active: dev
+zuul.include-debug-header: true
+zuul.debug.request: true

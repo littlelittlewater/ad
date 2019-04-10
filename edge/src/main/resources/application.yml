@@ -1,0 +1,45 @@
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+zuul:
+  ignored-services: '*'
+  ignoredPatterns: /**/api/**
+  routes:
+    account-service: /account/**
+    payment-service: /payment/**
+    inventory-service: /inventory/**
+    order-service: /order/**
+    user-service: /user/**
+    catalog-service: /catalog/**
+    mission-service: /mission/**
+    web-service: /web/**
+    url-service: /url/**
+    upload-master: /upload/**
+    upload-1: /upload-1/**
+    upload-2: /upload-2/**
+    upload-3: /upload-3/**
+    download: /download/**
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 120000
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:8001/auth/user
+  ignored: /**/v1/**
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+# 提高延时设置 elevate timeout settings, 避免因为延时造成失败
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 120000
+ribbon:
+  ConnectTimeout: 120000
+  ReadTimeout: 120000

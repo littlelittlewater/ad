@@ -1,0 +1,38 @@
+{
+  "msg": {
+    "id": "0",
+    "text": "根节点",
+    "state": {
+      "opened": true
+    },
+    "checked": true,
+    "children": [
+      {
+        "id": "1",
+        "icon": "zmdi zmdi-settings",
+        "text": "系统管理",
+        "checked": false,
+        "children": [
+          {
+            "id": "3",
+            "icon": "",
+            "url": "mission/mission",
+            "text": "任务情况",
+            "checked": false,
+            "children": [],
+            "parentId": "1",
+            "hasParent": true,
+            "hasChildren": false
+          }
+        ],
+        "parentId": "0",
+        "hasParent": false,
+        "hasChildren": true
+      }
+    ],
+    "parentId": "",
+    "hasParent": false,
+    "hasChildren": true
+  },
+  "code": 0
+}

@@ -27,6 +27,8 @@ public class Mission implements Serializable {
 
   private Long exceptNumber;
 
+  private Long errorNumber;
+
   private Integer cron;
 
   private Long publishPerTrigger;
@@ -135,6 +137,14 @@ public class Mission implements Serializable {
     this.lastTriggerTime = lastTriggerTime;
   }
 
+  public Long getErrorNumber() {
+    return errorNumber;
+  }
+
+  public void setErrorNumber(Long errorNumber) {
+    this.errorNumber = errorNumber;
+  }
+
   public void changeFinfishNumber(Long number) {
     this.finfishNumber += number;
   }
@@ -143,7 +153,11 @@ public class Mission implements Serializable {
     this.publishNumber += number;
   }
 
-  
+  public void changeErrorNumber(Long number) {
+    this.errorNumber += number;
+  }
+
+
   public boolean canPublish() {
     return (!isCancel()) && restCheck() && timeCheck();
   }
@@ -153,10 +167,12 @@ public class Mission implements Serializable {
   }
 
   private boolean timeCheck() {
-    return new Date().getTime() - lastTriggerTime.getTime() > cron * 60 *1000;
-}
-  
-  public Long getRealPublishNumber(){
-    return Math.min(exceptNumber - finfishNumber - publishNumber ,publishPerTrigger);
+    return new Date().getTime() - lastTriggerTime.getTime() > cron * 1000;
   }
+
+  public Long getRealPublishNumber() {
+    return Math.min(exceptNumber - finfishNumber - publishNumber, publishPerTrigger);
+  }
+
+
 }

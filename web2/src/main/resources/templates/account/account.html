@@ -1,0 +1,146 @@
+<div class="card" xmlns:shiro="http://www.w3.org/1999/xhtml">
+    <div class="card-block">
+        <div class="table-responsive">
+            <div id="data-table_wrapper" class="dataTables_wrapper">
+                <div class="dataTables_buttons hidden-sm-down actions">
+                    <span class="actions__item zmdi zmdi-search"
+                          onclick="search()" title="搜索"/>
+                    <span class="actions__item zmdi zmdi-refresh-alt"
+                          onclick="refresh()" title="刷新"/>
+                    <div class="dropdown actions__item">
+                        <i data-toggle="dropdown" class="zmdi zmdi-download">
+                        </i>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <a href="javascript:void(0)" class="dropdown-item"
+                               data-table-action="excel"
+                               onclick="exportJobLogExcel()">
+                                Excel (.xlsx)
+                            </a>
+                            <a href="javascript:void(0)" class="dropdown-item"
+                               data-table-action="csv"
+                               onclick="exportJobLogCsv()">
+                                CSV (.csv)
+                            </a>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown actions__item"
+                         shiro:hasPermission="spider:list">
+                        <i data-toggle="dropdown"
+                           class="zmdi zmdi-more-vert"></i>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="javascript:void(0)" class="dropdown-item"
+                               onclick="logOutByTypes()"
+                               shiro:hasPermission="spider:list">退出登陆</a>
+                            <a href="javascript:void(0)"
+                               class="dropdown-item"  data-toggle="modal"
+                               data-target="#update-type"
+                               shiro:hasPermission="spider:list">修改类型</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="data-table_filter" class="dataTables_filter">
+                    <form class="jobLog-table-form">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+					               	Bean名称：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="beanName"
+                                               class="form-control">
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+					               	方法名称：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="methodName"
+                                               class="form-control">
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon"> 状态： </span>
+                                    <div class="form-group">
+                                        <select class="form-control"
+                                                name="status">
+                                            <option value="" selected>所有
+                                            </option>
+                                            <option value="0">成功</option>
+                                            <option value="1">失败</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="table-responsive">
+                    <table id="jobLogTable" data-mobile-responsive="true"
+                           class="mb-bootstrap-table text-nowrap"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--修改type -->
+<div class="modal fade" id="update-type" data-keyboard="false"
+     data-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title pull-left">修改类型</h3>
+            </div>
+            <div class="modal-body">
+                <form id="update-type-form">
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	序号：
+					            </span>
+                                <div class="form-group">
+                                    <input readonly="readonly"
+                                           id="id"
+                                           name="id"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 修改类型：
+					            </span>
+                                <div class="form-group">
+                                    <input name="type"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-save">保存</button>
+                <button type="button" class="btn btn-secondary btn-close">关闭
+                </button>
+                <button class="btn-hide"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script data-th-src="@{js/app/account/account.js}"></script>
